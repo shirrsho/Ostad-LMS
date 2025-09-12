@@ -2,7 +2,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const { login, user, logout } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -12,7 +12,7 @@ export default function Login() {
         phone: e.target.phone.value,
         password: e.target.password.value
       });
-      navigate('/dashboard')
+      navigate('/teachers')
       
     } catch {
       console.log("Error")
@@ -20,7 +20,6 @@ export default function Login() {
   }
   return (
     <div>
-      {user ? <div><p>Logged in as: {user.username}</p><button onClick={async () => await logout()}>Logout</button></div> : <p>Please log in</p>}
       <form onSubmit={handleLogin}>
         <input type="text" name="phone" placeholder="Phone" required />
         <input type="password" name="password" placeholder="Password" required />
